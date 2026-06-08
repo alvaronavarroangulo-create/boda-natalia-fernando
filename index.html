@@ -743,6 +743,33 @@ nav a:hover { color: var(--sage); }
 </footer>
 
 <script>
+
+ const params = new URLSearchParams(window.location.search);
+const invitado = params.get('invitado');
+if (invitado) {
+  const nombre = decodeURIComponent(invitado);
+  
+  // Cambia el label superior
+  document.querySelector('.invite-label').textContent = 
+    'Te invitamos a nuestra boda';
+
+  // Inserta saludo personalizado debajo del monograma
+  const saludo = document.createElement('p');
+  saludo.style.cssText = `
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+    font-style: italic;
+  `;
+  saludo.textContent = 'Para ' + nombre;
+
+  // Lo inserta después del nombre "Natalia & Fernando"
+  const namesEl = document.querySelector('.names-full');
+  namesEl.insertAdjacentElement('afterend', saludo);
+}
 // ── Intersection Observer for timeline items
 const items = document.querySelectorAll('.tl-item');
 const observer = new IntersectionObserver((entries) => {
