@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natalia & Fernando — Nuestra Boda</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #b8cdb9;
+    --sage-pale: #e8f0e9;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-pale: #faf5e8;
+    --cream: #fdfaf3;
+    --blush: #f5ede8;
+    --text-dark: #3a3228;
+    --text-mid: #6b5e50;
+    --text-light: #9e8e7e;
+    --border: rgba(122,158,126,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── BOTANICAL SVG BACKGROUNDS ── */
+  .leaf-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero-watercolor {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% 20%, rgba(184,205,185,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 75%, rgba(201,168,76,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 70% 10%, rgba(245,237,232,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse 45% 35% at 20% 85%, rgba(184,205,185,0.25) 0%, transparent 55%);
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .invite-label {
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 1s ease both;
+  }
+
+  .monogram {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(8rem, 22vw, 14rem);
+    font-weight: 400;
+    color: var(--sage);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .monogram .ampersand {
+    font-size: 0.45em;
+    color: var(--gold);
+    vertical-align: middle;
+    margin: 0 0.15em;
+  }
+
+  .names-full {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--text-mid);
+    margin-top: 0.5rem;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .gold-divider {
+    width: 120px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .date-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+
+  .date-sub {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+    animation: fadeUp 1s 0.7s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--text-light); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    animation: float 2s ease-in-out infinite;
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 36px;
+    background: linear-gradient(to bottom, var(--sage-light), transparent);
+  }
+
+  /* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,250,243,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1.5rem;
+  display: flex; justify-content: center;
+  gap: clamp(0.8rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+}
+nav a {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mid); text-decoration: none;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+nav a:hover { color: var(--sage); }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 400; margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--text-dark); line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic; color: var(--sage);
+  }
+
+  .prose {
+    font-size: 0.95rem; line-height: 1.9;
+    color: var(--text-mid); font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ── ITINERARY ── */
+  #itinerary { background: var(--blush); max-width: 100%; }
+  #itinerary .inner {
+    max-width: 900px; margin: 0 auto; padding: 5rem 2rem;
+  }
+
+  .timeline {
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute; left: 120px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--sage-light), var(--gold-light), transparent);
+  }
+
+  .tl-item {
+    display: flex; gap: 0; margin-bottom: 0;
+    position: relative;
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .tl-item.visible { opacity: 1; transform: translateX(0); }
+
+  .tl-time {
+    width: 120px; min-width: 120px;
+    padding: 1.2rem 2rem 1.2rem 0;
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .tl-dot {
+    position: relative; width: 40px; min-width: 40px;
+    display: flex; justify-content: center; padding-top: 1.35rem;
+  }
+  .tl-dot::after {
+    content: '';
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--sage);
+    display: block; flex-shrink: 0;
+  }
+  .tl-item:nth-child(even) .tl-dot::after { border-color: var(--gold); }
+
+  .tl-content {
+    padding: 0.9rem 0 0.9rem 1.2rem;
+    border-bottom: 1px solid rgba(122,158,126,0.15);
+    flex: 1;
+  }
+  .tl-event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400;
+    color: var(--text-dark); line-height: 1.3;
+  }
+  .tl-note {
+    font-size: 0.78rem; color: var(--text-light);
+    font-weight: 300; margin-top: 0.2rem; letter-spacing: 0.05em;
+  }
+
+  /* ── MAP ── */
+  #ubicacion { text-align: center; }
+  .map-container {
+    margin-top: 2.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(122,158,126,0.12);
+  }
+  .map-container iframe {
+    width: 100%; height: 420px; border: none; display: block;
+  }
+  .location-card {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem; color: var(--text-mid);
+  }
+  .location-card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
+
+  /* ── DRESS CODE / INFO ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .info-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .info-icon {
+    font-size: 2rem; margin-bottom: 0.75rem; display: block;
+    color: var(--sage);
+  }
+  .info-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--text-dark); margin-bottom: 0.4rem;
+  }
+  .info-card p {
+    font-size: 0.83rem; color: var(--text-light);
+    font-weight: 300; line-height: 1.6;
+  }
+
+  /* ── COUNTDOWN ── */
+  #cuenta-regresiva {
+    background: var(--sage-pale);
+    max-width: 100%; text-align: center;
+  }
+  #cuenta-regresiva .inner {
+    max-width: 900px; margin: 0 auto; padding: 5rem 2rem;
+  }
+  .countdown-grid {
+    display: flex; justify-content: center; gap: 1.5rem;
+    margin-top: 3rem; flex-wrap: wrap;
+  }
+  .cd-box {
+    background: white; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem 2rem;
+    min-width: 110px;
+  }
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300;
+    color: var(--sage); line-height: 1;
+  }
+  .cd-label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-light);
+    margin-top: 0.4rem; display: block;
+  }
+  .tbd-badge {
+    display: inline-block;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-light);
+    color: var(--gold);
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.4rem 1rem;
+    border-radius: 100px; margin-bottom: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 1;
+  }
+  .footer-mono {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem; color: var(--sage-light);
+    display: block; margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-size: 0.75rem; color: var(--text-light);
+    font-weight: 300; letter-spacing: 0.15em;
+  }
+
+  /* ── DECORATIVE LEAVES ── */
+  .deco-leaves {
+    position: absolute; pointer-events: none; z-index: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ── BOTANICAL CORNERS ── */
+  .botanical-corner { position: absolute; pointer-events: none; }
+  .bc-tl { top: 0; left: 0; transform-origin: top left; }
+  .bc-tr { top: 0; right: 0; transform: scaleX(-1); transform-origin: top right; }
+  .bc-bl { bottom: 0; left: 0; transform: scaleY(-1); transform-origin: bottom left; }
+  .bc-br { bottom: 0; right: 0; transform: scale(-1,-1); transform-origin: bottom right; }
+
+  @media (max-width: 600px) {
+    nav { gap: 1.2rem; }
+    nav a { font-size: 0.65rem; }
+    .timeline::before { left: 80px; }
+    .tl-time { width: 80px; min-width: 80px; font-size: 0.9rem; padding-right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section id="inicio" style="padding:0; max-width:100%;">
+<div id="hero">
+  <div class="hero-watercolor"></div>
+
+  <!-- Botanical corner SVGs -->
+  <svg class="botanical-corner bc-tl" width="280" height="260" viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7">
+    <ellipse cx="40" cy="90" rx="18" ry="30" fill="#b8cdb9" transform="rotate(-30 40 90)"/>
+    <ellipse cx="70" cy="60" rx="22" ry="35" fill="#c9d8b0" transform="rotate(-15 70 60)"/>
+    <ellipse cx="100" cy="40" rx="15" ry="25" fill="#d4e0c8" transform="rotate(5 100 40)"/>
+    <ellipse cx="30" cy="130" rx="14" ry="22" fill="#afc9b4" transform="rotate(-45 30 130)"/>
+    <path d="M0 0 Q40 80 120 60" stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M0 0 Q60 40 80 100" stroke="#c9a84c" stroke-width="1" fill="none" opacity="0.5"/>
+    <circle cx="55" cy="135" r="5" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <circle cx="45" cy="150" r="4" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <circle cx="70" cy="140" r="3.5" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <ellipse cx="155" cy="25" rx="12" ry="20" fill="#b8cdb9" transform="rotate(10 155 25)"/>
+    <ellipse cx="180" cy="15" rx="10" ry="18" fill="#c9d8b0" transform="rotate(25 180 15)"/>
+  </svg>
+
+  <svg class="botanical-corner bc-tr" width="280" height="260" viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7">
+    <ellipse cx="40" cy="90" rx="18" ry="30" fill="#b8cdb9" transform="rotate(-30 40 90)"/>
+    <ellipse cx="70" cy="60" rx="22" ry="35" fill="#c9d8b0" transform="rotate(-15 70 60)"/>
+    <ellipse cx="100" cy="40" rx="15" ry="25" fill="#d4e0c8" transform="rotate(5 100 40)"/>
+    <ellipse cx="30" cy="130" rx="14" ry="22" fill="#afc9b4" transform="rotate(-45 30 130)"/>
+    <path d="M0 0 Q40 80 120 60" stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <circle cx="55" cy="135" r="5" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <circle cx="45" cy="150" r="4" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+  </svg>
+
+  <svg class="botanical-corner bc-bl" width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55">
+    <ellipse cx="35" cy="70" rx="15" ry="28" fill="#b8cdb9" transform="rotate(-30 35 70)"/>
+    <ellipse cx="65" cy="45" rx="18" ry="30" fill="#c9d8b0" transform="rotate(-10 65 45)"/>
+    <path d="M0 0 Q35 65 100 50" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <circle cx="45" cy="110" r="5" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <circle cx="60" cy="125" r="4" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+  </svg>
+
+  <svg class="botanical-corner bc-br" width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55">
+    <ellipse cx="35" cy="70" rx="15" ry="28" fill="#b8cdb9" transform="rotate(-30 35 70)"/>
+    <ellipse cx="65" cy="45" rx="18" ry="30" fill="#c9d8b0" transform="rotate(-10 65 45)"/>
+    <path d="M0 0 Q35 65 100 50" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <circle cx="45" cy="110" r="5" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+    <circle cx="60" cy="125" r="4" fill="#f5ede8" stroke="#d4bfa8" stroke-width="1"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="invite-label">Te invitamos a nuestra boda</p>
+    <div class="monogram">
+      <span>N</span><span class="ampersand">&amp;</span><span>F</span>
+    </div>
+    <p class="names-full">Natalia &amp; Fernando</p>
+    <div class="gold-divider"></div>
+    <div class="tbd-badge">03 de Octubre</div>
+    <p class="date-display">17:30 · 2026</p>
+    <p class="date-sub">Av. Príncipe de Gales 6030, La Reina</p>
+  </div>
+
+  <div class="scroll-hint">Desplázate</div>
+</div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#itinerario">Itinerario</a>
+  <a href="#ubicacion">Lugar</a>
+  <a href="#info">Info</a>
+  <a href="#cuenta-regresiva">Cuenta Regresiva</a>
+</nav>
+
+<!-- ITINERARY -->
+<div id="itinerario">
+<section id="itinerary" style="padding:0; max-width:100%;">
+<div class="inner">
+  <span class="section-label">El gran día</span>
+  <h2 class="section-title">Programa <em>del evento</em></h2>
+  <p class="prose">Cada momento ha sido pensado con amor para que disfrutes junto a nosotros esta celebración tan especial.</p>
+
+  <div class="timeline" id="timeline">
+
+    <div class="tl-item">
+      <div class="tl-time">17:30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Llegada de Invitados</p>
+        <p class="tl-note">Bienvenida y recepción</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">18:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Entrada del Novio</p>
+        <p class="tl-note">Pasto · Piscina</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">18:03</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Entrada de la Novia &amp; Inicio Ceremonia Simbólica</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">18:30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Salida de los Novios</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">18:35</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Inicio del Cóctel</p>
+        <p class="tl-note">Terraza · Gran Salón</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">19:15</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Ingreso de Invitados al Salón</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">19:30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Ingreso de Novios · Palabras · Brindis</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">19:35</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Fotos por Mesa</p>
+        <p class="tl-note">Un recuerdo con cada mesa</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">20:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Cena</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">21:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Corte de Torta &amp; Buffet de Postres</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">21:30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Vals</p>
+        <p class="tl-note">El primer baile</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">21:35</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">¡Fiesta! · DJ</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">23:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Lanzamiento del Ramo</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">23:05</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Caja Whisky</p>
+        <p class="tl-note">Ritual especial</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">23:10</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">¡Más Fiesta! · DJ</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time" style="font-size:0.85rem; color: var(--text-light);">Al cierre</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <p class="tl-event">Cotillón</p>
+        <p class="tl-note">¡A celebrar hasta el final!</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+</div>
+
+<!-- LOCATION -->
+<section id="ubicacion">
+  <span class="section-label">¿Dónde?</span>
+  <h2 class="section-title">El <em>Lugar</em></h2>
+  <p class="prose" style="margin: 0 auto; text-align: center;">
+    
+  </p>
+  <div class="map-container">
+    <!-- Reemplaza las coordenadas en el src con las del lugar real de la boda -->
+    <iframe
+      src="https://www.google.com/maps?q=-33.4374008,-70.5707655&z=17&output=embed"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa del lugar del evento">
+    </iframe>
+  </div>
+  <div style="text-align:center; margin-top:1.5rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <div class="location-card">
+      <span class="dot"></span>
+      <span>Av. Príncipe de Gales 6030, La Reina</span>
+    </div>
+    <a href="https://www.google.com/maps/place/Centro+La+Reina/@-33.4374008,-70.5707655,17z/data=!3m1!4b1!4m6!3m5!1s0x9662ce5446ae8707:0x15ba461a85bf1bb1!8m2!3d-33.4374008!4d-70.5707655!16s%2Fg%2F11cs3n79rl?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank"
+       style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem;
+              background:var(--sage); color:white; border-radius:100px; text-decoration:none;
+              font-size:0.8rem; letter-spacing:0.1em; font-weight:400; transition:background 0.3s;">
+      Abrir en Google Maps ↗
+    </a>
+  </div>
+</section>
+
+<!-- INFO -->
+<!-- INFO -->
+<section id="info" style="background: var(--gold-pale); max-width:100%; padding:0;">
+<div style="max-width:900px; margin:0 auto; padding:5rem 2rem;">
+  <span class="section-label">Todo lo que necesitas saber</span>
+  <h2 class="section-title">Información <em>para invitados</em></h2>
+  <div class="info-grid">
+
+<div class="info-card">
+<span class="info-icon">
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Cuerpo de la camisa -->
+    <path d="M20 30 L10 15 L30 10 L40 25 L60 25 L70 10 L90 15 L80 30 L80 95 L20 95 Z" fill="currentColor" opacity="0.12"/>
+    <path d="M20 30 L10 15 L30 10 L40 25 L60 25 L70 10 L90 15 L80 30 L80 95 L20 95 Z" />
+    <!-- Cuello izquierdo -->
+    <path d="M40 25 L50 45 L30 10"/>
+    <!-- Cuello derecho -->
+    <path d="M60 25 L50 45 L70 10"/>
+    <!-- Botones -->
+    <circle cx="50" cy="55" r="2" fill="currentColor"/>
+    <circle cx="50" cy="67" r="2" fill="currentColor"/>
+    <circle cx="50" cy="79" r="2" fill="currentColor"/>
+    <!-- Línea central -->
+    <line x1="50" y1="45" x2="50" y2="95"/>
+  </svg>
+</span>
+  <h3>Vestimenta</h3>
+  <p>Código formal. Etiqueta elegante para este día tan especial.</p>
+</div>
+
+<div class="info-card" style="cursor:pointer;" onclick="agregarCalendario()">
+  <span class="info-icon">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M16 2v4M8 2v4M3 10h18"/>
+      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
+    </svg>
+  </span>
+  <h3>Fecha</h3>
+  <p>03 de Octubre · 2026<br>
+    <span style="font-size:0.75rem; color:var(--sage); letter-spacing:0.05em;">
+      ↗ Guardar en Google Calendar
+    </span>
+  </p>
+</div>
+
+    <div class="info-card">
+      <span class="info-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 3"/>
+        </svg>
+      </span>
+      <h3>Hora</h3>
+      <p>Llegada de invitados a las 17:30 hrs.</p>
+    </div>
+
+    <div class="info-card">
+      <span class="info-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <path d="M8 10h8M8 14h5"/>
+        </svg>
+      </span>
+      <h3>RSVP</h3>
+      <p>Confirma tu asistencia lo antes posible.<br>¡Te esperamos!</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- COUNTDOWN -->
+<div id="cuenta-regresiva">
+<section style="padding:0; max-width:100%;">
+<div class="inner">
+  <span class="section-label" style="display:block; margin-bottom:0.75rem;">Faltan…</span>
+  <h2 class="section-title" style="text-align:center;">Cuenta <em>Regresiva</em></h2>
+  <p style="text-align:center; color:var(--text-light); font-size:0.85rem; letter-spacing:0.1em; font-weight:300;">
+    ¡Cada vez menos!
+  </p>
+
+  <div class="countdown-grid" id="countdown">
+    <div class="cd-box"><div class="cd-num" id="cd-days">—</div><span class="cd-label">Días</span></div>
+    <div class="cd-box"><div class="cd-num" id="cd-hours">—</div><span class="cd-label">Horas</span></div>
+    <div class="cd-box"><div class="cd-num" id="cd-min">—</div><span class="cd-label">Minutos</span></div>
+    <div class="cd-box"><div class="cd-num" id="cd-sec">—</div><span class="cd-label">Segundos</span></div>
+  </div>
+
+  <p style="text-align:center; margin-top:2rem; color:var(--sage); font-family:'Dancing Script', cursive; font-size:1.6rem;">
+    ¡03 de Octubre 2026!
+  </p>
+</div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-mono">N &amp; F</span>
+  <p>Con amor · Natalia &amp; Fernando · 2026</p>
+</footer>
+
+<script>
+// ── Intersection Observer for timeline items
+const items = document.querySelectorAll('.tl-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+items.forEach(item => observer.observe(item));
+
+// ── Countdown — CHANGE THIS DATE WHEN CONFIRMED
+// Set your wedding date here: new Date('YYYY-MM-DDTHH:MM:SS')
+//const weddingDate = null; // null = date TBD
+const weddingDate = new Date('2026-10-03T17:30:00');
+
+function updateCountdown() {
+  if (!weddingDate) {
+    ['cd-days','cd-hours','cd-min','cd-sec'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
+    return;
+  }
+  const now = new Date();
+  const diff = weddingDate - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '🎊';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Smooth nav active highlight
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+current ? 'var(--sage)' : '';
+  });
+}, { passive: true });
+
+
+function agregarCalendario() {
+  const inicio = '20261003T173000';
+  const fin    = '20261004T020000';
+  const titulo = encodeURIComponent('Boda Natalia & Fernando');
+  const lugar  = encodeURIComponent('Av. Príncipe de Gales 6030, La Reina');
+  const detalle = encodeURIComponent('¡Nos casamos! Te esperamos para celebrar este día tan especial.');
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&details=${detalle}&location=${lugar}`;
+  window.open(url, '_blank');
+}
+</script>
+</body>
+</html>
