@@ -459,8 +459,73 @@ nav a:hover { color: var(--sage); }
   <a href="#ubicacion">Lugar</a>
   <a href="#info">Info</a>
   <a href="#cuenta-regresiva">Cuenta Regresiva</a>
+  <a href="#regalo">Regalo</a>
 </nav>
+<!-- RSVP -->
+<div id="rsvp" style="background: var(--sage-pale); max-width:100%;">
+<div style="max-width:680px; margin:0 auto; padding:5rem 2rem;">
+  <span class="section-label" style="display:block; text-align:center;">¿Nos acompañas?</span>
+  <h2 class="section-title" style="text-align:center;">Confirma tu <em>asistencia</em></h2>
+  <p class="prose" style="margin: 0 auto 3rem; text-align:center;">
+    Tu confirmación nos ayuda a preparar todo con amor para ese día especial.
+  </p>
 
+  <!-- FORMULARIO -->
+  <div id="rsvp-form-wrap" style="max-width:480px; margin:0 auto;">
+    <div style="
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(122,158,126,0.10);
+    ">
+
+      <!-- Nombre -->
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-mid); margin-bottom:0.5rem;" for="rsvp-nombre">Tu nombre</label>
+        <input
+          type="text"
+          id="rsvp-nombre"
+          placeholder="Tu nombre completo"
+          style="width:100%; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:12px; font-family:'Jost',sans-serif; font-size:0.9rem; color:var(--text-dark); background:var(--cream); outline:none; box-sizing:border-box;"
+        />
+      </div>
+
+      <!-- Botón -->
+      <button onclick="enviarRSVP()" style="
+        width:100%; margin-top:0.5rem; padding:1rem 2rem;
+        background:var(--sage); color:white; border:none; border-radius:100px;
+        font-family:'Jost',sans-serif; font-size:0.85rem; letter-spacing:0.15em;
+        text-transform:uppercase; cursor:pointer; transition:opacity 0.3s;">
+        Confirmar asistencia →
+      </button>
+
+      <p id="rsvp-error" style="display:none; color:#c0392b; font-size:0.8rem; text-align:center; margin-top:1rem;"></p>
+    </div>
+  </div>
+
+  <!-- Mensaje de gracias -->
+  <div id="rsvp-gracias" style="display:none; text-align:center; padding:2rem 0;">
+    <p style="font-family:'Dancing Script', cursive; font-size:3rem; color:var(--sage); margin-bottom:0.5rem;">¡Gracias!</p>
+    <p id="rsvp-gracias-texto" style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--text-mid); font-weight:300;"></p>
+  </div>
+
+</div>
+</div>
+
+<style>
+.rsvp-radio-label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.2rem; border: 1px solid var(--border);
+  border-radius: 100px; cursor: pointer; font-size: 0.85rem;
+  color: var(--text-mid); transition: border-color 0.2s, background 0.2s;
+  user-select: none;
+}
+.rsvp-radio-label:has(input:checked) {
+  border-color: var(--sage); background: var(--sage-pale); color: var(--sage);
+}
+.rsvp-radio { display: none; }
+</style>
 <!-- ITINERARY -->
 <div id="itinerario">
 <section id="itinerary" style="padding:0; max-width:100%;">
@@ -736,6 +801,57 @@ nav a:hover { color: var(--sage); }
 </section>
 </div>
 
+<!-- REGALO -->
+<section id="regalo" style="background: var(--blush); max-width:100%; padding:0;">
+<div style="max-width:600px; margin:0 auto; padding:5rem 2rem; text-align:center;">
+
+  <span class="section-label">Un detalle con amor</span>
+  <h2 class="section-title" style="text-align:center;">Sugerencia <em>de regalo</em></h2>
+
+  <p style="font-size:0.92rem; line-height:1.9; color:var(--text-mid); font-weight:300; margin-bottom:2.5rem;">
+    ¡Su presencia y cariño es nuestro mejor regalo!<br>
+    Si aún así desean regalarnos algo más que su hermosa compañía,<br>pueden darnos un detalle en esta cuenta:
+  </p>
+
+  <div style="
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 8px 40px rgba(122,158,126,0.08);
+    margin-bottom: 2rem;
+  ">
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:var(--text-dark); line-height:2.1; letter-spacing:0.04em;">
+      <strong style="font-weight:500;">NOMBRE TITULAR</strong><br>
+      RUT<br>
+      BANCO<br>
+      TIPO DE CUENTA<br>
+      N° CUENTA<br>
+      <span style="color:var(--sage);">correo@gmail.com</span>
+    </p>
+  </div>
+
+  <div class="gold-divider" style="margin:2rem auto;"></div>
+  <p style="font-size:0.85rem; color:var(--text-light); font-weight:300; margin-bottom:1rem; letter-spacing:0.05em;">
+    o también comprando con el siguiente código:
+  </p>
+
+  <div style="
+    display:inline-flex; align-items:center; gap:1.5rem;
+    background: white; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.2rem 2rem;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.08);
+  ">
+    <div style="text-align:left;">
+      <p style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-light); margin-bottom:0.2rem;">Código Novios</p>
+      <p style="font-family:'Dancing Script', cursive; font-size:1.4rem; color:var(--gold);">Tienda</p>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:500; color:var(--text-dark); letter-spacing:0.05em;">00000000</p>
+  </div>
+
+</div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <span class="footer-mono">N &amp; F</span>
@@ -834,6 +950,41 @@ function agregarCalendario() {
   const detalle = encodeURIComponent('¡Nos casamos! Te esperamos para celebrar este día tan especial.');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&details=${detalle}&location=${lugar}`;
   window.open(url, '_blank');
+}
+// ── Pre-fill name from URL param ?invitado=...
+(function preRellenarNombre() {
+  const params = new URLSearchParams(window.location.search);
+  const invitado = params.get('invitado');
+  if (invitado) {
+    const nombre = decodeURIComponent(invitado).replace(/\+/g, ' ');
+    const campo = document.getElementById('rsvp-nombre');
+    if (campo) campo.value = nombre;
+  }
+})();
+
+function enviarRSVP() {
+  const nombre = document.getElementById('rsvp-nombre').value.trim();
+  const error  = document.getElementById('rsvp-error');
+
+  if (!nombre) {
+    error.textContent = 'Por favor ingresa tu nombre.';
+    error.style.display = 'block';
+    return;
+  }
+  error.style.display = 'none';
+
+  const FORM_ID          = '1FAIpQLSf7yJTNut4Sw0Ci7LNiZAY123Bni1ij87PrGmGx5LtQQSUIDA';
+  const ENTRY_NOMBRE     = 'entry.652083668';
+
+  const url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/viewform'
+    + '?usp=pp_url'
+    + '&' + ENTRY_NOMBRE + '=' + encodeURIComponent(nombre);
+
+  document.getElementById('rsvp-form-wrap').style.display = 'none';
+  document.getElementById('rsvp-gracias-texto').textContent = '¡' + nombre + ', nos alegra que puedas acompañarnos!';
+  document.getElementById('rsvp-gracias').style.display = 'block';
+
+  setTimeout(() => window.open(url, '_blank'), 1200);
 }
 </script>
 </body>
