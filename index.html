@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Natalia & Fernando — Nuestra Boda</title>
+<title>Natalia & Fernando — Nuestro Matrimonio</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -437,7 +437,7 @@ nav a:hover { color: var(--sage); }
   </svg>
 
   <div class="hero-content">
-    <p class="invite-label">Te invitamos a nuestra boda</p>
+    <p class="invite-label">Te invitamos a nuestro Matrimonio</p>
     <div class="monogram">
       <span>N</span><span class="ampersand">&amp;</span><span>F</span>
     </div>
@@ -463,69 +463,39 @@ nav a:hover { color: var(--sage); }
 </nav>
 <!-- RSVP -->
 <div id="rsvp" style="background: var(--sage-pale); max-width:100%;">
-<div style="max-width:680px; margin:0 auto; padding:5rem 2rem;">
+<div style="max-width:540px; margin:0 auto; padding:5rem 2rem;">
   <span class="section-label" style="display:block; text-align:center;">¿Nos acompañas?</span>
   <h2 class="section-title" style="text-align:center;">Confirma tu <em>asistencia</em></h2>
-  <p class="prose" style="margin: 0 auto 3rem; text-align:center;">
+  <p class="prose" style="margin:0 auto 3rem; text-align:center;">
     Tu confirmación nos ayuda a preparar todo con amor para ese día especial.
   </p>
 
-  <!-- FORMULARIO -->
-  <div id="rsvp-form-wrap" style="max-width:480px; margin:0 auto;">
-    <div style="
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 8px 40px rgba(122,158,126,0.10);
-    ">
-
-      <!-- Nombre -->
+  <div id="rsvp-form-wrap">
+    <div style="background:white; border:1px solid var(--border); border-radius:24px; padding:2.5rem 2rem; box-shadow:0 8px 40px rgba(122,158,126,0.10);">
       <div style="margin-bottom:1.5rem;">
-        <label style="display:block; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-mid); margin-bottom:0.5rem;" for="rsvp-nombre">Tu nombre</label>
-        <input
-          type="text"
-          id="rsvp-nombre"
-          placeholder="Tu nombre completo"
-          style="width:100%; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:12px; font-family:'Jost',sans-serif; font-size:0.9rem; color:var(--text-dark); background:var(--cream); outline:none; box-sizing:border-box;"
-        />
+        <label style="display:block; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-mid); margin-bottom:0.5rem;" for="rsvp-nombre">Nombre y apellido</label>
+        <input type="text" id="rsvp-nombre" placeholder="Tu nombre completo"
+          style="width:100%; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:12px; font-family:'Jost',sans-serif; font-size:0.9rem; color:var(--text-dark); background:var(--cream); outline:none; box-sizing:border-box; transition:border-color 0.2s, box-shadow 0.2s;"
+          onfocus="this.style.borderColor='var(--sage)'; this.style.boxShadow='0 0 0 3px rgba(122,158,126,0.15)'"
+          onblur="this.style.borderColor=''; this.style.boxShadow=''">
       </div>
-
-      <!-- Botón -->
-      <button onclick="enviarRSVP()" style="
-        width:100%; margin-top:0.5rem; padding:1rem 2rem;
-        background:var(--sage); color:white; border:none; border-radius:100px;
-        font-family:'Jost',sans-serif; font-size:0.85rem; letter-spacing:0.15em;
-        text-transform:uppercase; cursor:pointer; transition:opacity 0.3s;">
+      <button onclick="enviarRSVP()"
+        style="width:100%; padding:1rem 2rem; background:var(--sage); color:white; border:none; border-radius:100px; font-family:'Jost',sans-serif; font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:background 0.3s;"
+        onmouseover="this.style.background='var(--sage-light)'"
+        onmouseout="this.style.background='var(--sage)'">
         Confirmar asistencia →
       </button>
-
       <p id="rsvp-error" style="display:none; color:#c0392b; font-size:0.8rem; text-align:center; margin-top:1rem;"></p>
     </div>
   </div>
 
-  <!-- Mensaje de gracias -->
   <div id="rsvp-gracias" style="display:none; text-align:center; padding:2rem 0;">
-    <p style="font-family:'Dancing Script', cursive; font-size:3rem; color:var(--sage); margin-bottom:0.5rem;">¡Gracias!</p>
+    <p style="font-family:'Dancing Script',cursive; font-size:3rem; color:var(--sage); margin-bottom:0.5rem;">¡Gracias!</p>
     <p id="rsvp-gracias-texto" style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--text-mid); font-weight:300;"></p>
+    <p style="font-size:0.82rem; color:var(--text-light); margin-top:0.75rem; font-weight:300;">Abriendo el formulario en un momento…</p>
   </div>
-
 </div>
 </div>
-
-<style>
-.rsvp-radio-label {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.65rem 1.2rem; border: 1px solid var(--border);
-  border-radius: 100px; cursor: pointer; font-size: 0.85rem;
-  color: var(--text-mid); transition: border-color 0.2s, background 0.2s;
-  user-select: none;
-}
-.rsvp-radio-label:has(input:checked) {
-  border-color: var(--sage); background: var(--sage-pale); color: var(--sage);
-}
-.rsvp-radio { display: none; }
-</style>
 <!-- ITINERARY -->
 <div id="itinerario">
 <section id="itinerary" style="padding:0; max-width:100%;">
@@ -549,32 +519,17 @@ nav a:hover { color: var(--sage); }
       <div class="tl-time">18:00</div>
       <div class="tl-dot"></div>
       <div class="tl-content">
-        <p class="tl-event">Entrada del Novio</p>
-        <p class="tl-note">Pasto · Piscina</p>
+        <p class="tl-event">Ceremonia</p>
+        <p class="tl-note">Sector Pasto - Piscina</p>
       </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-time">18:03</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">Entrada de la Novia - Inicio Ceremonia Simbólica</p>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">18:30</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">Salida de los Novios</p>
-      </div>
-    </div>
 
     <div class="tl-item">
       <div class="tl-time">18:35</div>
       <div class="tl-dot"></div>
       <div class="tl-content">
-        <p class="tl-event">Inicio del Cóctel</p>
+        <p class="tl-event">Cóctel</p>
         <p class="tl-note">Terraza · Gran Salón</p>
       </div>
     </div>
@@ -591,7 +546,7 @@ nav a:hover { color: var(--sage); }
       <div class="tl-time">19:30</div>
       <div class="tl-dot"></div>
       <div class="tl-content">
-        <p class="tl-event">Ingreso de Novios · Palabras · Brindis</p>
+        <p class="tl-event">Brindis de los Novios</p>
       </div>
     </div>
 
@@ -624,8 +579,7 @@ nav a:hover { color: var(--sage); }
       <div class="tl-time">21:30</div>
       <div class="tl-dot"></div>
       <div class="tl-content">
-        <p class="tl-event">Vals</p>
-        <p class="tl-note">El primer baile</p>
+        <p class="tl-event">Vals de los Novios</p>
       </div>
     </div>
 
@@ -637,39 +591,7 @@ nav a:hover { color: var(--sage); }
       </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-time">23:00</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">Lanzamiento del Ramo</p>
-      </div>
-    </div>
 
-    <div class="tl-item">
-      <div class="tl-time">23:05</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">Caja Whisky</p>
-        <p class="tl-note"></p>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">23:10</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">¡Más Fiesta! · DJ</p>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:0.85rem; color: var(--text-light);">Al cierre</div>
-      <div class="tl-dot"></div>
-      <div class="tl-content">
-        <p class="tl-event">Cotillón</p>
-        <p class="tl-note">¡A celebrar hasta el final!</p>
-      </div>
-    </div>
 
   </div>
 </div>
@@ -732,7 +654,7 @@ nav a:hover { color: var(--sage); }
   </svg>
 </span>
   <h3>Vestimenta</h3>
-  <p>Código formal. Etiqueta elegante para este día tan especial.</p>
+  <p>Código formal. <br> Etiqueta elegante para este día tan especial <br> ¡El blanco se reserva para la novia!.</p>
 </div>
 
 <div class="info-card" style="cursor:pointer;" onclick="agregarCalendario()">
@@ -822,12 +744,12 @@ nav a:hover { color: var(--sage); }
     margin-bottom: 2rem;
   ">
     <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:var(--text-dark); line-height:2.1; letter-spacing:0.04em;">
-      <strong style="font-weight:500;">NOMBRE TITULAR</strong><br>
-      RUT<br>
-      BANCO<br>
-      TIPO DE CUENTA<br>
-      N° CUENTA<br>
-      <span style="color:var(--sage);">correo@gmail.com</span>
+      <strong style="font-weight:500;">Natalia Paz Bravo Figueroa</strong><br>
+      17.704.157-2<br>
+      Banco Internacional<br>
+      Cuenta Corriente<br>
+      N° CUENTA: 9840610<br>
+      <span style="color:var(--sage);">natipaz.figueroab@gmail.com</span>
     </p>
   </div>
 
@@ -844,9 +766,9 @@ nav a:hover { color: var(--sage); }
   ">
     <div style="text-align:left;">
       <p style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-light); margin-bottom:0.2rem;">Código Novios</p>
-      <p style="font-family:'Dancing Script', cursive; font-size:1.4rem; color:var(--gold);">Tienda</p>
+      <p style="font-family:'Dancing Script', cursive; font-size:1.4rem; color:var(--gold);">PARIS</p>
     </div>
-    <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:500; color:var(--text-dark); letter-spacing:0.05em;">00000000</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:500; color:var(--text-dark); letter-spacing:0.05em;">7453353</p>
   </div>
 
 </div>
@@ -867,7 +789,7 @@ if (invitado) {
   
   // Cambia el label superior
   document.querySelector('.invite-label').textContent = 
-    'Te invitamos a nuestra boda';
+    'Te invitamos a nuestro Matrimonio';
 
   // Inserta saludo personalizado debajo del monograma
   const saludo = document.createElement('p');
@@ -945,7 +867,7 @@ window.addEventListener('scroll', () => {
 function agregarCalendario() {
   const inicio = '20261003T173000';
   const fin    = '20261004T020000';
-  const titulo = encodeURIComponent('Boda Natalia & Fernando');
+  const titulo = encodeURIComponent('Matrimonio Natalia & Fernando');
   const lugar  = encodeURIComponent('Av. Príncipe de Gales 6030, La Reina');
   const detalle = encodeURIComponent('¡Nos casamos! Te esperamos para celebrar este día tan especial.');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&details=${detalle}&location=${lugar}`;
@@ -953,19 +875,17 @@ function agregarCalendario() {
 }
 // ── Pre-fill name from URL param ?invitado=...
 (function preRellenarNombre() {
-  const params = new URLSearchParams(window.location.search);
+  const params   = new URLSearchParams(window.location.search);
   const invitado = params.get('invitado');
-  if (invitado) {
-    const nombre = decodeURIComponent(invitado).replace(/\+/g, ' ');
-    const campo = document.getElementById('rsvp-nombre');
-    if (campo) campo.value = nombre;
-  }
+  if (!invitado) return;
+  const nombre = decodeURIComponent(invitado).replace(/\+/g, ' ');
+  const campo = document.getElementById('rsvp-nombre');
+  if (campo) campo.value = nombre;
 })();
 
 function enviarRSVP() {
   const nombre = document.getElementById('rsvp-nombre').value.trim();
   const error  = document.getElementById('rsvp-error');
-
   if (!nombre) {
     error.textContent = 'Por favor ingresa tu nombre.';
     error.style.display = 'block';
@@ -973,17 +893,15 @@ function enviarRSVP() {
   }
   error.style.display = 'none';
 
-  const FORM_ID          = '1FAIpQLSf7YJTNut4Sw0Ci7LNiZAY123BniNij87PrGmGx5LtQQSUIOA';
-  const ENTRY_NOMBRE     = 'entry.652083668';
+  // Nuevo Google Form — reemplaza ENTRY_NOMBRE con el entry.XXXXXXX del campo nombre una vez que lo tengas
+  const FORM_ID      = '1FAIpQLScbKjUZa_ru6WETe9xaJldJn9B-8W_SnWwhne1BGiVGbfGs3A';
+  const ENTRY_NOMBRE = 'entry.1995451144'; // ← reemplazar con el entry ID real del campo nombre
 
-  const url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/viewform'
-    + '?usp=pp_url'
-    + '&' + ENTRY_NOMBRE + '=' + encodeURIComponent(nombre);
+  const url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/viewform?usp=pp_url&' + ENTRY_NOMBRE + '=' + encodeURIComponent(nombre);
 
   document.getElementById('rsvp-form-wrap').style.display = 'none';
   document.getElementById('rsvp-gracias-texto').textContent = '¡' + nombre + ', nos alegra que puedas acompañarnos!';
   document.getElementById('rsvp-gracias').style.display = 'block';
-
   setTimeout(() => window.open(url, '_blank'), 1200);
 }
 </script>
